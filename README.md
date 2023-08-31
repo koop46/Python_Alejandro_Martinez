@@ -1,6 +1,7 @@
 # Python_Alejandro_Martinez
-ITHS: Python for AI &amp; ML development
-Exercises & stuff
+## ITHS: Python for AI &amp; ML development
+
+### Exercises & stuff
 
 *markdown cheat sheet*
 
