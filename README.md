@@ -1,5 +1,5 @@
 # Python_Alejandro_Martinez
-## ITHS: Python for AI &amp; ML development
+## AI &amp; ML development @ ITHS
 
 ### Exercises & stuff
 
