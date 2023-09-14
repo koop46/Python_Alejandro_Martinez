@@ -121,7 +121,9 @@ def add_test_points():
 
 ##########################################
 
-
+#Ta med felhanteringen
+#som tar hand om negativa tal och icke-numeriska inputs. 
+# Se till att ha användarvänliga felmeddelanden
 
 print("###Pichu or Pikachu?###")
 print("[1] Plot datapoints")
