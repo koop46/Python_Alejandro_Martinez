@@ -36,11 +36,10 @@ TEST_POINTS = []
 for test_row in TEST_ROWS:
     formated_testing_rows = [ [float(value) for value in test_row ] ]
     TEST_POINTS.append(formated_testing_rows)
+
+
+################################################################################################ Function
     
-
-
-################################################################################################ Graph
-
 def graph(TRAINING_COLUMNS):
 
     sns.relplot(data=TRAINING_COLUMNS, x='Width', y='Height', hue='Label', hue_order=[0,1])
@@ -49,7 +48,7 @@ def graph(TRAINING_COLUMNS):
 #https://stackoverflow.com/questions/14885895/color-a-scatter-plot-by-column-values
 
 
-################################################################################################ Calculations
+##########################################
 
 
 def calculate_distance(TEST_WIDTH, TEST_HEIGHT, TRAINING_COLUMNS, TRAINING_POINTS):
@@ -84,7 +83,10 @@ def calculate_distance(TEST_WIDTH, TEST_HEIGHT, TRAINING_COLUMNS, TRAINING_POINT
         NEIGHBOURS_IDX.append(neighbours_idx_list)
 
 
-############################################################################################### Classification
+    classifying(NEIGHBOURS_IDX, TEST_POINTS)
+
+
+##########################################
 
 def classifying(NEIGHBOURS_IDX, TEST_POINTS):
 
@@ -99,22 +101,44 @@ def classifying(NEIGHBOURS_IDX, TEST_POINTS):
             print(f"Sample with (width, height) ({str(TEST_POINTS[idx][0])[1:-1]}) classified as Pichu")
 
 
-############################################################################################### Classification
+##########################################
 
 
-def start():
+def add_test_points():
 
-    print("###Pichu or Pikachu?###")
-    print("[1] Plot datapoints")
-    print("[2] Pichu or Pickahu?")
-    print("[3] Add datapoints")
-    print("What would you like to do?")
+    width = input("Enter width: ")
+    height = input("Enter height: ")
 
-        
-    while True:
-        choice = input("Pick number from 1-3")
-        if choice == 1:
-            graph(TRAINING_COLUMNS)
+    with open("testpoints.txt") as file:
+        nr_of_rows = len(file.readlines())
 
-start()
+
+    new_test_points = f"{nr_of_rows}. ({width}, {height})" + '\n'
+
+    with open("testpoints.txt", "a") as file:
+        file.write(new_test_points)
+
+
+##########################################
+
+
+
+print("###Pichu or Pikachu?###")
+print("[1] Plot datapoints")
+print("[2] Pichu or Pickahu?")
+print("[3] Add datapoints")
+print("What would you like to do?")
+
+    
+while True:
+    choice = int(input("Pick number from 1-3"))
+    if choice == 1:
+        graph(TRAINING_COLUMNS)
+    elif choice == 2:
+        calculate_distance(TEST_WIDTH, TEST_HEIGHT, TRAINING_COLUMNS, TRAINING_POINTS)
+    elif choice == 3:
+        add_test_points()
+
+    
+
 
