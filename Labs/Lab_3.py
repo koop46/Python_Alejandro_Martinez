@@ -9,16 +9,52 @@ class Shapes:
     def area(self):
         return self._area
 
+    @area.setter
+    def area(self, area):        
+
+        if isinstance(self, Rectangle):
+            area = self.side * self.side2
+            self._area = area if area > 0 else 404
+
+        elif isinstance(self, Circle):
+            area = (self.pi * pow(self.radius, 2))
+            self._area = area
+
 
     @property
     def circumference(self):
         return self._circumference
 
 
+    @circumference.setter
+    def circumference(self, circumference):
+        
+        if isinstance(self, Rectangle):
+            circumference = 2 * (self.side + self.side2)
+            self._circumference = circumference if self.side > 0 and self.side2 > 0 else 404
+
+
+        elif isinstance(self, Circle):
+            circumference =  (2 * self.pi * self.radius)
+            self._circumference = circumference if circumference > 0 else 404
+
+
     @property
     def volume(self):
         return self._volume
+    
+    @volume.setter
+    def volume(self, volume):
 
+        if isinstance(self, Cube):
+    
+            volume = pow(self.side,3)
+            self._volume = volume
+
+        elif isinstance(self, Sphere):
+
+            volume = (4/3) * self.pi * pow(self.radius, 3)
+            self._volume = volume if self.radius > 0 else 404
 
     def draw_figure(self):
         import matplotlib.pyplot as plt
@@ -119,32 +155,45 @@ class Shapes:
 
 
     def __le__(self, object):
-        return f"Area:{self.area <= object.area}. Circumference:{self.circumference <= object.circumference}"
+        if isinstance(self, Sphere) or isinstance(self, Cube):
+            return self.volume <= object.volume
+        else:
+            return self.area <= object.area, self.circumference <= object.circumference        
 
 
     def __ge__(self, object):
-        return f"Area:{self.area >= object.area}. Circumference:{self.circumference >= object.circumference}"
+        if isinstance(self, Sphere) or isinstance(self, Cube):
+            return self.volume >= object.volume
+        else:
+            return self.area >= object.area, self.circumference >= object.circumference
 
 
     def __lt__(self, object):
-        return f"Area:{self.area < object.area}. Circumference:{self.circumference < object.circumference}"
+        
+        if isinstance(self, Sphere) or isinstance(self, Cube):
+            return self.volume < object.volume
+        else:
+            return self.area < object.area, self.circumference < object.circumference
 
 
     def __gt__(self, object):
-        return f"Area:{self.area > object.area}. Circumference:{self.circumference > object.circumference}"
+        if isinstance(self, Sphere) or isinstance(self, Cube):
+            return self.volume > object.volume
+        else:
+            return self.area > object.area, self.circumference > object.circumference
 
 
 ##############################
 class Rectangle(Shapes):
 
-    def __init__(self, x, y, side=None, side2=None, area=None, circumference=None):
+    def __init__(self, x, y, side=None, side2=None):
         super().__init__(x, y)
 
         self.side = side
         self.side2 = side2
-        self._area = side*side2
-        self._circumference = 2 * (side + side2)
-
+        self.area = None
+        self.circumference = None
+    
 
     def is_square(self):
         return self.side==self.side2
@@ -161,20 +210,17 @@ class Rectangle(Shapes):
 ##############################
 class Cube(Rectangle):
     
-    def __init__(self, x, y, z, side=None, volume=None):
-        super().__init__(x, y, z, side)
+    def __init__(self, x, y, z, side):
+        super().__init__(x, y, side, 0) # 0:an ersätter side2 som ärvs från parentklassen
 
         self.z = z
-        self.side = side
-        self._volume = pow(side,3)
-
+        self.volume = None
 
     def draw_figure(self):
         import matplotlib.pyplot as plt
 
         center = (self.x, self.y, self.z)  
-        side = self.side
-        half_side = side / 2
+        half_side = self.side / 2
 
         vertices = [
             [center[0] - half_side, center[1] - half_side, center[2] - half_side],
@@ -225,35 +271,32 @@ class Circle(Shapes):
     import math
     pi = math.pi
 
-    def __init__(self, x, y, radius=None, area=None, circumference=None):
+    def __init__(self, x, y, radius):
         super().__init__(x, y)
-
         self.radius = radius
-        self._area = self.pi * pow(radius, 2)
-        self._circumference = 2 * self.pi * radius
-
-
+        self.area = None
+        self.circumference = None
+  
     def is_unit_circle(self):
         return self.radius == 1
 
 
     def __repr__(self):
-        return f"Circle(x={self.x}, y={self.y}, radius={self.radius}, area={self.area}, circumference={self.circumference})"
+        return f"Circle(x={self.x}, y={self.y}, radius={self.radius}, area={self._area}, circumference={self._circumference})"
 
 
     def __str__(self):
-        return f"Circle(x={self.x}, y={self.y}, radius={self.radius}, area={self.area}, circumference={self.circumference})"
+        return f"Circle(x={self.x}, y={self.y}, radius={self.radius}, area={self._area}, circumference={self._circumference})"
 
 
 
 class Sphere(Circle):
 
-    def __init__(self, x, y, z, radius=None, volume=None):
-        super().__init__(x, y, z, radius)
+    def __init__(self, x, y, z, radius=None):
+        super().__init__(x, y, radius)
 
         self.z = z
-        self.radius = radius
-        self._volume = (4/3) * self.pi * pow(radius, 3)
+        self.volume = None
 
 
     def draw_figure(self):
