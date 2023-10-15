@@ -2,10 +2,20 @@ from Lab_3 import *
 
 
 def test_operator_overload():
+    rec1 = Rectangle(x=0, y=0, side=5, side2=6)
+    rec2 = Rectangle(x=1,y=1, side=2, side2=3)
+    ci1 = Circle(x=0, y=0, radius=4)
+    ci2 = Circle(x=1, y=1, radius=3)
 
     assert not rec1 == ci2
     assert rec2 > rec1
     assert ci1 < ci2
+
+    sp1 = Sphere(1,1,1, radius=1)
+    sp2 = Sphere(4,4,4, radius=4)
+    cu1 = Cube(3,3,3, side=3)
+    cu2 = Cube(2,2,2, side=2)
+
     assert not sp1 >= sp2
     assert not cu1 <= cu2
 
@@ -114,11 +124,3 @@ def test_value_error():
     assert y == 1
 
 
-rec1 = Rectangle(x=0, y=0, side=5, side2=6)
-rec2 = Rectangle(x=1,y=1, side=2, side2=3)
-ci1 = Circle(x=0, y=0, radius=4)
-ci2 = Circle(x=1, y=1, radius=3)
-sp1 = Sphere(1,1,1, radius=1)
-sp2 = Sphere(4,4,4, radius=4)
-cu1 = Cube(3,3,3, side=3)
-cu2 = Cube(2,2,2, side=2)
