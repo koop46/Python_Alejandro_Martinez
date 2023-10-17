@@ -74,6 +74,7 @@ def test_is_inside_edge():
 
     cu1 = Cube(x=0,y=0,z=0, side=3)
     assert cu1.is_inside_edge(-3,-3,3) == False
+    assert cu1.is_inside_edge(1.4, 1.4, 1.4) == True
     assert cu1.is_inside_edge(1.5, 1.5, 1.4) == False
 
 
@@ -110,7 +111,7 @@ def test_is_unit_circle():
 
 def test_value_error():
 
-    rec2 = Rectangle(x=1,y=1, side=2, side2=3)
+    rec2 = Rectangle(x=1, y=1, side=2, side2=3)
     assert rec2.is_inside_edge(1.5,1.7) == True    
     rec2.translate("7", 7)
     assert rec2.is_inside_edge(1.5,1.7) == False
