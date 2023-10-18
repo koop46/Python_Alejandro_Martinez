@@ -84,13 +84,14 @@ class Shapes:
         figure_y = self.y
         side = self.side/2
 
+        coord_y1 = figure_y - side
+        coord_y2 = figure_y + side
+
         if z is not None: # z=0 tolkas som z=None
             figure_z = self.z
 
             coord_x1 = figure_x - side 
             coord_x2 = figure_x + side
-            coord_y1 = figure_y - side
-            coord_y2 = figure_y + side
             coord_z1 = figure_z - side 
             coord_z2 = figure_z + side 
 
@@ -102,8 +103,6 @@ class Shapes:
     
             coord_x1 = figure_x - side2
             coord_x2 = figure_x + side2
-            coord_y1 = figure_y - side
-            coord_y2 = figure_y + side
             
 
             return coord_x1 < x < coord_x2 and coord_y1 < y < coord_y2

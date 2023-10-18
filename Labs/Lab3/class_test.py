@@ -125,3 +125,4 @@ def test_value_error():
     assert y == 1
 
 
+test_is_inside_edge()
