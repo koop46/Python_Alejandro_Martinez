@@ -124,5 +124,3 @@ def test_value_error():
     y = rec2.y
     assert y == 1
 
-
-test_is_inside_edge()
