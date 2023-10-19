@@ -103,10 +103,13 @@ def test_is_square():
 
 
 def test_is_unit_circle():
-    ci1 = Circle(x=0, y=0, radius=4)
+    ci1 = Circle(x=0, y=2, radius=4)
     assert ci1.is_unit_circle() == False
     ci1.radius = 1
+    assert ci1.is_unit_circle() == False
+    ci1.y = 0
     assert ci1.is_unit_circle() == True
+
     
 
 def test_value_error():
@@ -124,3 +127,5 @@ def test_value_error():
     y = rec2.y
     assert y == 1
 
+
+test_is_inside_edge()

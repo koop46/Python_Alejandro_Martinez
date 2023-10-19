@@ -150,7 +150,7 @@ class Shapes:
 
 
     def __eq__(self, obj):
-        return type(self)  == type(obj)
+        return self.area  == obj.area
 
 
     def __le__(self, object):
@@ -277,7 +277,10 @@ class Circle(Shapes):
         self.circumference = None
   
     def is_unit_circle(self):
-        return self.radius == 1
+
+        unit_circle = self.x == 0 and self.y == 0 and self.radius == 1
+
+        return unit_circle
 
 
     def __repr__(self):
