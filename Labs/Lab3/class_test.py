@@ -1,5 +1,4 @@
-from Lab_3 import *
-
+import Sphere, Rectangle, Circle, Cube
 
 def test_operator_overload():
     rec1 = Rectangle(x=0, y=0, side=5, side2=6)
