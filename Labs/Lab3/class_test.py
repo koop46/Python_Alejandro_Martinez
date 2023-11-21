@@ -1,4 +1,4 @@
-import Sphere, Rectangle, Circle, Cube
+from Lab_3 import Sphere, Rectangle, Circle, Cube
 
 def test_operator_overload():
     rec1 = Rectangle(x=0, y=0, side=5, side2=6)
@@ -31,10 +31,10 @@ def test_area():
     assert rec2.area == 6
 
     rec2 = Rectangle(x=1,y=1, side=2, side2=-3)
-    assert rec2.area == 404 #Error
+    assert rec2.area == "Error" #error
 
     rec2 = Rectangle(x=1,y=1, side=-2, side2=3)
-    assert rec2.area == 404 #Error
+    assert rec2.area == "Error" #error
 
 
 def test_circumference():
@@ -46,13 +46,13 @@ def test_circumference():
     assert rec1.circumference != 22
 
     rec1 = Rectangle(x=0, y=0, side=-5, side2=6)
-    assert rec1.circumference == 404 #error
+    assert rec1.circumference == "Error" #error
 
     ci1 = Circle(x=0, y=0, radius=4)
     assert round(ci1.circumference, 2) == 25.13
 
     ci1 = Circle(x=0, y=0, radius=-4)
-    assert round(ci1.circumference, 2) == 404 #error
+    assert ci1.circumference, 2 == "Error" #error
 
 
 def test_volume():
@@ -61,33 +61,32 @@ def test_volume():
     assert round(sp1.volume, 2) == 113.10
 
     sp1 = Sphere(1,1,1, radius=-3)
-    assert round(sp1.volume, 2) != 113.10
+    assert sp1.volume, 2 != 113.10
 
 
 def test_is_inside_edge():
  
     rec1 = Rectangle(x=0, y=0, side=5, side2=6)
-    assert rec1.is_inside_edge(0.5,0.5) == True
+    assert rec1.is_inside(0.5,0.5) == True
     rec1.translate(5,5)
-    assert rec1.is_inside_edge(0.5,0.5) == False
+    assert rec1.is_inside(0.5,0.5) == False
 
     cu1 = Cube(x=0,y=0,z=0, side=3)
-    assert cu1.is_inside_edge(-3,-3,3) == False
-    assert cu1.is_inside_edge(1.4, 1.4, 1.4) == True
-    assert cu1.is_inside_edge(1.5, 1.5, 1.4) == False
-
+    assert cu1.is_inside(-3,-3,3) == False
+    assert cu1.is_inside(1.4, 1.4, 1.4) == True
+    assert cu1.is_inside(1.5, 1.5, 1.4) == False
 
 def test_is_inside_curve():
 
     ci1 = Circle(x=0, y=0, radius=4)
-    assert ci1.is_inside_curve(4,4) == False
-    assert ci1.is_inside_curve(-2.6,-3) == True
+    assert ci1.is_inside(4,4) == False
+    assert ci1.is_inside(-2.6,-3) == True
 
     sp1 = Sphere(x=0, y=0, z=0, radius=3)
-    assert sp1.is_inside_curve(-3, -3, -3) == False
-    assert sp1.is_inside_curve(1.5, 1.5, 1.4) == True
+    assert sp1.is_inside(-3, -3, -3) == False
+    assert sp1.is_inside(1.5, 1.5, 1.4) == True
     sp1.translate(x=-1.5, y=-1.5, z=-1.5)
-    assert sp1.is_inside_curve(1.5, 1.5, 1.4) == False
+    assert sp1.is_inside(1.5, 1.5, 1.4) == False
 
 
 def test_is_square():
@@ -114,17 +113,16 @@ def test_is_unit_circle():
 def test_value_error():
 
     rec2 = Rectangle(x=1, y=1, side=2, side2=3)
-    assert rec2.is_inside_edge(1.5,1.7) == True    
+    assert rec2.is_inside(1.5,1.7) == True    
     rec2.translate("7", 7)
-    assert rec2.is_inside_edge(1.5,1.7) == False
+    assert rec2.is_inside(1.5,1.7) == False
     rec2.translate(1, "1")
-    assert rec2.is_inside_edge(1.5,1.7) == True    
+    assert rec2.is_inside(1.5,1.7) == True    
     rec2.translate("seven", "seven")
-    assert rec2.is_inside_edge(1.5,1.7) == True
+    assert rec2.is_inside(1.5,1.7) == True
     x = rec2.x
     assert x == 1
     y = rec2.y
     assert y == 1
 
 
-test_is_inside_edge()
