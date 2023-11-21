@@ -31,10 +31,10 @@ def test_area():
     assert rec2.area == 6
 
     rec2 = Rectangle(x=1,y=1, side=2, side2=-3)
-    assert rec2.area == "Error" #error
+    assert rec2.area == "Error, must be positive integer."
 
     rec2 = Rectangle(x=1,y=1, side=-2, side2=3)
-    assert rec2.area == "Error" #error
+    assert rec2.area == "Error, must be positive integer."
 
 
 def test_circumference():
@@ -46,13 +46,13 @@ def test_circumference():
     assert rec1.circumference != 22
 
     rec1 = Rectangle(x=0, y=0, side=-5, side2=6)
-    assert rec1.circumference == "Error" #error
+    assert rec1.circumference == "Error, must be positive integer."
 
     ci1 = Circle(x=0, y=0, radius=4)
     assert round(ci1.circumference, 2) == 25.13
 
     ci1 = Circle(x=0, y=0, radius=-4)
-    assert ci1.circumference, 2 == "Error" #error
+    assert ci1.circumference, 2 == "Error, must be positive integer."
 
 
 def test_volume():

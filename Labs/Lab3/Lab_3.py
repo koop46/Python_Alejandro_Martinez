@@ -14,7 +14,7 @@ class Shapes:
 
         if isinstance(self, Rectangle):
             area = self.side * self.side2
-            self._area = area if area > 0 else "Error"
+            self._area = area if area > 0 else "Error, must be positive integer."
 
         elif isinstance(self, Circle):
             area = (self.pi * pow(self.radius, 2))
@@ -30,12 +30,12 @@ class Shapes:
         
         if isinstance(self, Rectangle):
             circumference = 2 * (self.side + self.side2)
-            self._circumference = circumference if self.side > 0 and self.side2 > 0 else "Error"
+            self._circumference = circumference if self.side > 0 and self.side2 > 0 else "Error, must be positive integer."
 
 
         elif isinstance(self, Circle):
             circumference =  (2 * self.pi * self.radius)
-            self._circumference = circumference if circumference > 0 else "Error"
+            self._circumference = circumference if circumference > 0 else "Error, must be positive integer."
 
 
     @property
@@ -53,7 +53,7 @@ class Shapes:
         elif isinstance(self, Sphere):
 
             volume = (4/3) * self.pi * pow(self.radius, 3)
-            self._volume = volume if self.radius > 0 else "Error"
+            self._volume = volume if self.radius > 0 else "Error, must be positive integer."
 
     
     def translate(self, x, y, z=None):
